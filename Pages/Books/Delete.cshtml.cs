@@ -27,6 +27,9 @@ public class DeleteModel : PageModel
         var book = await _context.Book
             .Include(b => b.Publisher)
             .Include(b => b.Author)
+            .Include(b => b.BookCategories)
+                .ThenInclude(b => b.Category)
+            .AsNoTracking()
             .FirstOrDefaultAsync(m => m.ID == id);
 
         if (book is null)
@@ -48,7 +51,10 @@ public class DeleteModel : PageModel
             return NotFound();
         }
 
-        var book = await _context.Book.FindAsync(id);
+        var book = await _context.Book
+            .Include(b => b.BookCategories)
+            .FirstOrDefaultAsync(m => m.ID == id);
+
         if (book != null)
         {
             Book = book;

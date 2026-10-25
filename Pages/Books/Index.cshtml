@@ -1,4 +1,4 @@
-@page
+@page "/"
 @model Chisalita_Daniel_Lab2.Pages.Books.IndexModel
 
 @{
@@ -28,6 +28,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Book[0].Publisher.PublisherName)
             </th> 
+            <th>
+                Categories
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -49,6 +52,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Publisher.PublisherName)
             </td> 
+            <td>
+                @{
+                    if (item.BookCategories != null)
+                    {
+                        foreach (var category in item.BookCategories)
+                        {
+                            @category.Category.ID @: @category.Category.CategoryName <br />
+                        }
+                    }
+                }
+            </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
