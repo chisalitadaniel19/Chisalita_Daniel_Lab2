@@ -8,4 +8,8 @@ public class Chisalita_Daniel_Lab2Context(DbContextOptions<Chisalita_Daniel_Lab2
     public DbSet<Author> Author { get; set; } = default!;
     public DbSet<Category> Category { get; set; } = default!;
     public DbSet<BookCategory> BookCategory { get; set; } = default!;
+
+    public DbSet<Chisalita_Daniel_Lab2.Models.Borrowing> Borrowing { get; set; } = default!;
+
+    public DbSet<Chisalita_Daniel_Lab2.Models.Member> Member { get; set; } = default!;
 }
